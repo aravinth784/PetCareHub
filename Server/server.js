@@ -7,14 +7,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// MongoDB connection
-mongoose.connect(process.env.MONGO_URI || 'mongodb+srv://aravinthvsn:ara123vinth@petapp.eo7fs0y.mongodb.net/petcarehub')
-  .then(() => console.log("✅ MongoDB connected"))
-  .catch((err) => console.error("❌ MongoDB connection error:", err));
 
-// -------------------------
-// User Schema and Routes
-// -------------------------
+mongoose.connect(process.env.MONGO_URI || 'mongodb+srv://aravinthvsn:ara123vinth@petapp.eo7fs0y.mongodb.net/petcarehub')
+  .then(() => console.log(" MongoDB connected"))
+  .catch((err) => console.error(" MongoDB connection error:", err));
+
+
 const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
@@ -22,7 +20,7 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", userSchema);
 
-// Signup Route
+
 app.post("/api/signup", async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -38,7 +36,7 @@ app.post("/api/signup", async (req, res) => {
   }
 });
 
-// Login Route
+
 app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -52,9 +50,7 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
-// -------------------------
-// Pet Care Schema & Routes
-// -------------------------
+
 const petSchema = new mongoose.Schema({
   name: String,
   breed: String,
@@ -66,7 +62,7 @@ const petSchema = new mongoose.Schema({
 
 const Pet = mongoose.model("Pet", petSchema);
 
-// GET - All pets (care tracker)
+
 app.get("/api/pets", async (req, res) => {
   try {
     const pets = await Pet.find();
@@ -76,7 +72,7 @@ app.get("/api/pets", async (req, res) => {
   }
 });
 
-// POST - Add a pet (care tracker)
+
 app.post("/api/pets", async (req, res) => {
   try {
     const newPet = new Pet(req.body);
@@ -87,21 +83,18 @@ app.post("/api/pets", async (req, res) => {
   }
 });
 
-// -------------------------
-// Pet Adoption Schema & Routes
-// -------------------------
 const adoptionSchema = new mongoose.Schema({
   name: String,
   breed: String,
   age: Number,
   image: String,
-  description: String, // description for adoption
-  postedBy: String,     // optional: user email or ID who posted the pet
+  description: String, 
+  postedBy: String,     
 });
 
 const AdoptionPet = mongoose.model("AdoptionPet", adoptionSchema);
 
-// GET - All adoption pets
+
 app.get("/api/adoption", async (req, res) => {
   try {
     const pets = await AdoptionPet.find();
@@ -111,7 +104,7 @@ app.get("/api/adoption", async (req, res) => {
   }
 });
 
-// POST - Add an adoption pet
+
 app.post("/api/adoption", async (req, res) => {
   try {
     const newPet = new AdoptionPet(req.body);
@@ -122,8 +115,6 @@ app.post("/api/adoption", async (req, res) => {
   }
 });
 
-// -------------------------
-// Start Server
-// -------------------------
+
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(` Server running on http://localhost:${PORT}`));

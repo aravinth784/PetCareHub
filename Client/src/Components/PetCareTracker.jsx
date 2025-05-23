@@ -14,7 +14,7 @@ export default function PetCareTracker() {
     medicalHistory: ""
   });
 
-  // 🔁 Fetch pets from backend on mount
+ 
   useEffect(() => {
     axios.get("http://localhost:5000/api/pets")
       .then(res => {
@@ -36,7 +36,7 @@ export default function PetCareTracker() {
 
   const isEmpty = (str) => !str || str.trim() === "";
 
-  // ⬆️ Submit new pet to backend
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 

@@ -10,7 +10,7 @@ import Signup from "./Pages/signup";
 export default function App() {
   const location = useLocation();
 
-  // Hide Navbar on login page (and you can add signup or others if needed)
+  
   const hideNavbar = location.pathname === "/login" || location.pathname === "/";
 
   return (

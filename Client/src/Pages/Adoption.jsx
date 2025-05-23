@@ -12,15 +12,15 @@ export default function Adoption() {
     postedBy: "",
   });
 
-  // Fetch pets from backend on load
   useEffect(() => {
     fetchPets();
   }, []);
 
   const fetchPets = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/pets");
-      setPets(res.data);
+      const res = await axios.get("http://localhost:5000/api/adoption");
+      const shuffled = res.data.sort(() => 0.5 - Math.random());
+      setPets(shuffled.slice(0, 3));
     } catch (err) {
       console.error("Error fetching pets", err);
     }
@@ -32,8 +32,8 @@ export default function Adoption() {
 
   const handleSubmit = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/api/pets", form);
-      setPets([...pets, res.data]);
+      const res = await axios.post("http://localhost:5000/api/adoption", form);
+      setPets(prev => [res.data, ...prev].slice(0, 3));
       setForm({
         name: "",
         breed: "",
@@ -47,15 +47,14 @@ export default function Adoption() {
     }
   };
 
-  // Pet card component
+  const handleAdopt = (id) => {
+    setPets(pets.filter(pet => pet._id !== id));
+  };
+
   const PetCard = ({ pet }) => (
     <div className="card w-80 bg-base-100 shadow-xl">
       <figure>
-        <img
-          src={pet.image}
-          alt={pet.name}
-          className="h-48 w-full object-cover"
-        />
+        <img src={pet.image} alt={pet.name} className="h-48 w-full object-cover" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{pet.name}</h2>
@@ -63,6 +62,12 @@ export default function Adoption() {
         <p>Age: {pet.age}</p>
         <p>{pet.description}</p>
         <p className="text-sm text-gray-400">Posted by: {pet.postedBy}</p>
+        <button
+          className="btn btn-success mt-2"
+          onClick={() => handleAdopt(pet._id)}
+        >
+          Adopt
+        </button>
       </div>
     </div>
   );
@@ -71,8 +76,13 @@ export default function Adoption() {
     <div className="max-w-5xl mx-auto space-y-8 p-4">
       <h2 className="text-3xl font-bold text-center">Adoption Center</h2>
 
-      {/* Post a pet for adoption */}
-      <div className="bg-base-100 p-4 rounded shadow space-y-4">
+      <div className="flex flex-wrap gap-6 justify-center">
+        {pets.map(pet => (
+          <PetCard key={pet._id} pet={pet} />
+        ))}
+      </div>
+
+      <div className="bg-base-100 p-4 rounded shadow space-y-4 mt-8">
         <h3 className="text-xl font-semibold">Post a Pet for Adoption</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <input
@@ -122,8 +132,6 @@ export default function Adoption() {
           Post Pet
         </button>
       </div>
-
-      s
     </div>
   );
 }

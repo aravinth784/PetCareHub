@@ -3,7 +3,7 @@ import Pet from "../models/Pet.js";
 
 const router = express.Router();
 
-// Get all pets
+
 router.get("/", async (req, res) => {
   try {
     const pets = await Pet.find();
@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Add a new pet
+
 router.post("/", async (req, res) => {
   try {
     const newPet = new Pet(req.body);
