@@ -10,12 +10,12 @@ export default function VetLocator() {
   ];
 
   const findVets = () => {
-    // Simulate vet search by location (in real app, call API)
+   
     if (!location.trim()) {
       alert("Please enter a location");
       return;
     }
-    setVets(dummyVets); // Just return dummy data here
+    setVets(dummyVets); 
   };
 
   return (

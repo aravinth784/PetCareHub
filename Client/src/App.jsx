@@ -1,9 +1,12 @@
-import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
-import Adoption from "./pages/Adoption";
-import Care from "./pages/Care";
-import Locator from "./pages/Locator";
+import { Routes, Route, Navigate } from "react-router-dom";
+import Navbar from "./Components/Navbar";
+import Home from "./Pages/Home";
+import Adoption from "./Pages/Adoption";
+import Care from "./Pages/Care";
+import Locator from "./Pages/Locator";
+import Login from "./Pages/login";
+import Signup from "./Pages/signup";
+
 
 export default function App() {
   return (
@@ -11,10 +14,14 @@ export default function App() {
       <Navbar />
       <div className="p-6">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Login />} />
           <Route path="/adoption" element={<Adoption />} />
           <Route path="/care" element={<Care />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/locator" element={<Locator />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+         
         </Routes>
       </div>
     </div>
