@@ -18,7 +18,7 @@ export default function Navbar() {
       </div>
 
       <div className="flex-none gap-2 hidden md:flex">
-        <Link to="/" className="btn btn-ghost">Home</Link>
+        <Link to="/home" className="btn btn-ghost">Home</Link>
         <Link to="/adoption" className="btn btn-ghost">Adoption</Link>
         <Link to="/care" className="btn btn-ghost">Pet Care</Link>
         <Link to="/locator" className="btn btn-ghost">Vet Locator</Link>
@@ -27,8 +27,8 @@ export default function Navbar() {
           <span className="btn btn-ghost cursor-default">Hello, {userName}</span>
         ) : (
           <>
-            <Link to="/login" className="btn btn-outline btn-primary">Login</Link>
-            <Link to="/signup" className="btn btn-primary">Sign Up</Link>
+            <Link to="/login" className="btn btn-outline btn-primary">Logout</Link>
+            
           </>
         )}
       </div>

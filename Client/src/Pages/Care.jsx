@@ -1,4 +1,4 @@
-import PetCareTracker from "../Components/PetCare";
+import PetCareTracker from "../Components/PetCareTracker";
 
 export default function Care() {
   return (
