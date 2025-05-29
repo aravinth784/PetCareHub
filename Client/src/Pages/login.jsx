@@ -39,7 +39,10 @@ export default function AuthPage() {
   };
 
   return (
+    <>
+    <h1 className="text-4xl font-bold mb-6 flex justify-center">Welcome to PetCareHub</h1>
     <div className="flex justify-center items-center min-h-screen bg-base-200">
+      
       <div className="card w-96 shadow-xl bg-base-100 p-6">
         <h2 className="text-2xl font-bold mb-4">{isLogin ? "Login" : "Sign Up"}</h2>
 
@@ -89,5 +92,6 @@ export default function AuthPage() {
         </p>
       </div>
     </div>
+    </>
   );
 }

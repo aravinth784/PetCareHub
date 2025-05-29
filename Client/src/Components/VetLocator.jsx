@@ -5,8 +5,11 @@ export default function VetLocator() {
   const [vets, setVets] = useState([]);
 
   const dummyVets = [
-    { id: 1, name: "Happy Paws Vet Clinic", address: "123 Pet St, Cityville", phone: "123-456-7890" },
-    { id: 2, name: "Animal Care Center", address: "456 Fur Rd, Townsville", phone: "987-654-3210" },
+    { id: 1, name: "Happy Paws Vet Clinic", address: "123 7th street,gandhipuram", phone: "9876543210" },
+    { id: 2, name: "Animal Care Center", address: "456 raja street, Townhall", phone: "77886232175" },
+    { id: 3, name: "Paw clinc", address: "456 near brooksfields", phone: "778566461634" },
+    { id: 4, name: "Kovai Pet Clinic", address: "784 near temple,coimbatore", phone: "77886232175" },
+    { id: 5, name: "Suriya pet center", address: "sultan street,saibaba Kovil", phone: "77886232175" },
   ];
 
   const findVets = () => {
